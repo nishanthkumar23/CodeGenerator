@@ -1,0 +1,55 @@
+<!--Hello-->
+<project name="Web Application"  default="prepare" basedir=".">
+
+    <property file="${user.home}/build.properties"/>
+    <property file="build.properties"/>  
+    
+    <path id="classpath">
+        <fileset dir="web/WEB-INF/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <tstamp/>
+    </target>
+
+    <target name="clean" description="Deletes the Web Application's war directory and web archive file">
+        <echo message="Deleting ${app.name}'s war directory and web archive file ..."/>
+        <delete dir="${basedir}/rwar"/>
+        <delete file="${basedir}/${app.name}.war"/>
+    </target>
+
+    <target name="prepare" description="Creates the Web Application's war directory" depends="clean,init">
+        <echo message="Creating ${app.name}'s war directory ..."/>
+        <mkdir dir="${basedir}/rwar"/>
+        <mkdir dir="${basedir}/rwar/WEB-INF"/>
+        <mkdir dir="${basedir}/rwar/WEB-INF/classes"/>
+        <mkdir dir="${basedir}/rwar/WEB-INF/lib"/>
+		<mkdir dir="${basedir}/${sname}"/>
+    </target>
+
+    <target name="build" description="Builds the Web Application" depends="prepare">
+        <echo message="Building ${app.name} ..."/>
+        <javac srcdir="${basedir}/src" destdir="${basedir}/rwar/WEB-INF/classes">
+            <include name="**/*.java"/>
+            <classpath refid="classpath"/> 
+        </javac>  
+    </target>
+
+    <target name="package" description="Packages the Web Application's web archive file" depends="build">
+        <echo message="Packaging ${app.name}'s web archive file ..."/>
+        <delete file="${basedir}/${app.name}.war"/>
+		<war destfile="${basedir}/${app.name}.war" webxml="web/WEB-INF/web.xml">
+		  <fileset dir="${basedir}/config"/>
+		  <classes dir="${basedir}/web/WEB-INF/classes"/>
+		  <lib dir="${basedir}/web/WEB-INF/lib" />
+		  <zipfileset dir="${basedir}/images" prefix="images"/>
+		  <zipfileset dir="${basedir}/config" prefix="config"/>
+		  <zipfileset dir="${basedir}/styles" prefix="styles"/>
+		</war>
+		
+    </target>    
+
+</project>
+

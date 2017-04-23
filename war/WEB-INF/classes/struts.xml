@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />   
+    <package name="common" extends="struts-default"> 
+
+        
+        <action name="addIndex" class="com.dcgenerator.web.actions.AddExecutionplanIndexAction">
+            <result name="success">/jsp/index.jsp</result>
+            <result name="input">/jsp/index.jsp</result>
+        </action>
+        <action name="addStep" class="com.dcgenerator.web.actions.AddExecutionPlanAction">
+            <result name="success">/jsp/index.jsp</result>
+            <result name="input">/jsp/index.jsp</result>
+        </action>
+        <action name="deleteStep" class="com.dcgenerator.web.actions.DeleteExecutionPlanAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+        <action name="updateStepIndex" class="com.dcgenerator.web.actions.UpdateExecutionPlanIndexAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+        <action name="updateStep" class="com.dcgenerator.web.actions.UpdateExecutionPlanAction">
+        	<result>/jsp/index.jsp</result>
+        </action>	
+        <action name="copyStep" class="com.dcgenerator.web.actions.CopyExecutionPlanIndexAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+        <action name="saveCopiedStep" class="com.dcgenerator.web.actions.CopyExecutionPlanAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+        
+        <action name="sortStep" class="com.dcgenerator.web.actions.SortingStepAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>	
+        <action name="viewStep" class="com.dcgenerator.web.actions.ViewStepAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+         <action name="createWorkflowIndex" class="com.dcgenerator.web.actions.CreateNewWorkflowIndexAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+          <action name="createWorkflow" class="com.dcgenerator.web.actions.CreateNewWorkflowAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+          <action name="setWorkflow" class="com.dcgenerator.web.actions.SetWorkflowAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+       
+       
+        <action name="getApplication" class="com.dcgenerator.web.actions.GetApplicationAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+       
+       
+        	
+		<action name="saveSteps" class="com.dcgenerator.web.actions.SaveStepsAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action> 
+        <action name="createApplication" class="com.dcgenerator.web.actions.ApplicationCreateAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>  
+         <action name="readApps" class="com.dcgenerator.web.actions.ReadApplicationAction">
+        	<result type="redirect">getApplication.action</result>                   
+        </action>  
+         <action name="setApplication" class="com.dcgenerator.web.actions.SetApplicationAction">
+        	<result>/jsp/index.jsp</result>                   
+        </action>
+
+        <!-- New Actions - Start -->
+				<action name="addStepDetails" class="com.dcgenerator.web.actions.DCAddStepDetailsAction">
+					<result>/jsp/index.jsp</result>                   
+				</action>
+        <!-- New Actions - End -->
+    </package>
+    
+
+</struts>
